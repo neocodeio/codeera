@@ -35,6 +35,19 @@ CREATE TABLE IF NOT EXISTS snippet_tags (
   FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Per-user snippet metadata (favorites, pinned)
+CREATE TABLE IF NOT EXISTS user_snippet_meta (
+  user_id INT NOT NULL,
+  snippet_id INT NOT NULL,
+  favorite TINYINT(1) NOT NULL DEFAULT 0,
+  pinned TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (user_id, snippet_id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (snippet_id) REFERENCES snippets(id) ON DELETE CASCADE,
+  INDEX idx_user_fav (user_id, favorite),
+  INDEX idx_user_pin (user_id, pinned)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Email verification codes
 CREATE TABLE IF NOT EXISTS email_verifications (
   id INT AUTO_INCREMENT PRIMARY KEY,

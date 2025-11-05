@@ -11,40 +11,14 @@
 <body>
     <main class="page">
         <h2 class="page-title">الملف الشخصي</h2>
-        <section class="card profile-card">
-            <div class="profile-header">
-                <div class="avatar" id="avatarPreview" aria-hidden="true">👤</div>
-                <div>
-                    <h3 class="profile-title" id="displayName"></h3>
-                    <div class="profile-sub">@<span id="username"></span></div>
-                </div>
-            </div>
-            <div class="profile-body">
-                <div class="info-grid">
-                    <div class="info-item"><strong>البريد الإلكتروني:</strong><div><span id="email"></span></div></div>
-                    <div class="info-item"><strong>تاريخ الانضمام:</strong><div><span id="joinedAt"></span></div></div>
-                </div>
-                <form id="editProfileForm" class="form-card" style="padding:0;">
-                    <div class="form-row">
-                        <label for="editName">الاسم</label>
-                        <input type="text" id="editName" placeholder="اسم العرض">
-                    </div>
-                    <div class="form-row">
-                        <label for="editUsername">اسم المستخدم</label>
-                        <input type="text" id="editUsername" placeholder="اسم المستخدم">
-                    </div>
-                    <!-- <div class="form-row">
-                        <label for="editAvatar">رابط الصورة الرمزية (اختياري)</label>
-                        <input type="url" id="editAvatar" placeholder="https://...">
-                    </div> -->
-                    <div class="actions">
-                        <button type="submit" class="btn-primary">حفظ التغييرات</button>
-                    </div>
-                </form>
-                <div class="actions">
-                    <a class="btn-primary" href="dashboard.html" style="text-decoration:none; display:inline-block;">الرجوع إلى المستودع</a>
-                    <button id="logoutBtn" class="btn-ghost" style="background-color: red; color: white; font-weight: bold; font-size: 17px;">تسجيل خروج</button>
-                </div>
+        <section class="card detail-card">
+            <p><strong>الاسم:</strong> <span id="displayName"></span></p>
+            <p><strong>اسم المستخدم:</strong> <span id="username"></span></p>
+            <p><strong>البريد الإلكتروني:</strong> <span id="email"></span></p>
+            <p><strong>تاريخ الانضمام:</strong> <span id="joinedAt"></span></p>
+            <div class="actions" style="margin-top:12px;">
+             <button class="btn-ghost"><a href="dashboard.html" style="text-decoration: none; color: black; font-size: 18px; font-weight: 500;">ارجع</a></button>
+            <button id="logoutBtn" class="btn-ghost" style="color: red; font-size: 18px; font-weight: 500;">تسجيل خروج</button>
             </div>
         </section>
     </main>

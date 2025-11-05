@@ -12,40 +12,62 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1120px;margin:16px auto 0;padding:14px 16px;">
-        <h1 class="page-title" style="margin:0; background-color: #fdfdfd; color: #674fe5; padding: 5px; border-radius: 14px;">مستودع الأكواد <i class="ri-safe-2-fill"></i> <span id="sessionBadge" class="chip" style="font-size:12px; margin-inline-start:8px;">—</span></h1>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="add-code.html" class="btn" style="text-decoration:none;">إضافة كود <i class="ri-add-large-line"></i></a>
-            <a href="profile.html" class="btn secondary" style="text-decoration:none; color: white; background-color: #674fe5;">حسابي <i class="ri-user-6-line"></i></a>
-            <button id="trashBtn" class="btn secondary" style="background:#f1f0fe; color:#0f1222;">سلة المحذوفات <i class="ri-recycle-line"></i></button>
+    <header>
+        <div class="dash-header">
+            <h1>مستودع الأكواد</h1>
+            <div class="header-actions">
+                <button id="sidebarToggle" class="btn-ghost" style="display:none;">التصنيفات</button>
+                <a href="profile.html" class="btn" style="text-decoration: none;">حسابي</a>
+                <button id="logoutBtn">تسجيل خروج</button>
+            </div>
         </div>
     </header>
 
-    <main class="page">
-        <div class="card" style="margin:12px 0 16px;">
-            <div class="grid" style="grid-template-columns: repeat(12, 1fr); gap:12px; align-items:end;">
-                <div style="grid-column: span 12;">
-                    <label for="searchInput" class="muted" style="display:block;margin-bottom:8px;">ابحث عن كود بالاسم <i class="ri-search-line"></i></label>
-                    <input id="searchInput" type="text" placeholder="اكتب اسم الكود..." style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);font:inherit;">
-                    <div id="tagsFilter" class="chips" style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;"></div>
+    <main class="layout">
+        <aside class="sidebar card" id="tagsSidebar" aria-label="قائمة التصنيفات">
+            <div class="sidebar-header">التصنيفات</div>
+            <ul id="tagList" class="tag-list"></ul>
+        </aside>
+        <div id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true"></div>
+        <section class="content">
+        <section class="toolbar card">
+            <div class="toolbar-left">
+                <div class="field-group">
+                    <label for="searchInput">ابحث</label>
+                    <input id="searchInput" type="text" placeholder="اكتب اسم الكود..." class="input" />
+                </div>
+                <div class="field-group">
+                    <label for="sortSelect">ترتيب حسب</label>
+                    <select id="sortSelect" class="select">
+                        <option value="updated_desc">الأحدث</option>
+                        <option value="title_asc">الاسم (أ-ي)</option>
+                        <option value="title_desc">الاسم (ي-أ)</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="languageSelect">اللغة</label>
+                    <select id="languageSelect" class="select">
+                        <option value="">الكل</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                    </select>
+                </div>
+                <div class="field-inline">
+                    <label><input type="checkbox" id="hasDescChk"> يحتوي على وصف</label>
+                </div>
+                <div class="field-inline">
+                    <label><input type="checkbox" id="favOnlyChk"> المفضلة فقط</label>
                 </div>
             </div>
-        </div>
-        <section id="statsBar" class="card" style="margin:0 0 12px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; padding:14px;">
-            <div><strong>الإجمالي:</strong> <span id="statTotal">0</span></div>
-            <!-- <div><strong>آخر 7 أيام:</strong> <span id="statLast7">0</span></div> -->
-            <div><strong>الوسوم:</strong> <span id="statTopTags">-</span></div>
-        </section>
-        <div id="codesContainer" class="codes-container"></div>
-        <div id="skeletonContainer" class="codes-container" aria-hidden="true" style="display:none;"></div>
-        <div id="bulkBar" class="bulk-bar" style="display:none;">
-            <div><span id="selectedCount">0</span> محدد</div>
-            <div class="bulk-actions">
-                <button id="selectAllBtn" class="btn-ghost">تحديد الكل</button>
-                <button id="clearSelectionBtn" class="btn-ghost">إلغاء التحديد</button>
-                <button id="bulkDeleteBtn" class="btn-ghost danger">حذف المحدد</button>
+            <div class="toolbar-right">
+                <button class="btn-primary" onclick="window.location.href='add-code.html'">إضافة كود جديد</button>
+                <button id="clearFiltersBtn" class="btn-ghost">مسح عوامل التصفية</button>
             </div>
-        </div>
+        </section>
+
+        <section id="codesContainer" class="codes-container"></section>
+        </section>
     </main>
 
     <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>

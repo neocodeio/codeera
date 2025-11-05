@@ -1,3 +1,62 @@
+/* Layout with sidebar */
+.layout { display: grid; grid-template-columns: 260px 1fr; gap: 16px; max-width: 1120px; margin: 0 auto; padding: 0 12px 24px; }
+.sidebar { padding: 14px 12px; align-self: start; }
+.sidebar-header { font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.tag-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.tag-list li { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; }
+.tag-list li.active { outline: 2px solid var(--primary); background: #f7f6ff; }
+.tag-list .count { color: #6b6f82; font-size: 12px; }
+.content { min-width: 0; }
+
+/* Sidebar overlay on small screens */
+.sidebar { transition: transform .2s ease, opacity .2s ease; }
+.sidebar.hidden-mobile { display: none; }
+
+@media (max-width: 1024px){
+  .layout { grid-template-columns: 220px 1fr; }
+}
+@media (max-width: 900px){
+  .layout { grid-template-columns: 1fr; }
+  #tagsSidebar { display: none; position: fixed; top: 64px; bottom: 0; right: 12px; left: 12px; max-width: 480px; margin: 0 auto; z-index: 40; background: #fff; border-radius: 12px; overflow: auto; }
+  #tagsSidebar.open { display: block; }
+  #sidebarToggle { display: inline-block !important; }
+}
+
+/* Overlay for mobile sidebar */
+.sidebar-overlay { display: none; }
+@media (max-width: 900px){
+  .sidebar-overlay { position: fixed; inset: 0; background: rgba(15,18,34,0.45); z-index: 35; }
+  .sidebar-overlay.visible { display: block; }
+}
+
+/* Redesigned dashboard header wrapper */
+.dash-header { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.header-actions { display: flex; gap: 10px; align-items: center; }
+
+/* Toolbar */
+.toolbar { 
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  margin: 0 auto 10px;
+  max-width: 1120px;
+}
+.toolbar-left { display: flex; gap: 14px; flex-wrap: wrap; align-items: end; }
+.toolbar-right { display: flex; gap: 10px; }
+.field-group { display: grid; gap: 6px; min-width: 180px; flex: 1 1 180px; }
+.field-group label { font-weight: 600; color: var(--text); }
+.input, .select { 
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: #fff; outline: none; font: inherit;
+}
+.select { min-width: 140px; }
+
+@media (max-width: 720px){
+  .toolbar { align-items: stretch; }
+  .toolbar-right { width: 100%; justify-content: stretch; }
+  .toolbar-right .btn-primary { width: 100%; }
+}
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 :root {
@@ -42,7 +101,7 @@ header #logoutBtn { background: var(--primary-200); color: var(--text); }
 
 .codes-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 18px;
   padding: 20px;
   max-width: 1120px;
@@ -96,6 +155,12 @@ header #logoutBtn { background: var(--primary-200); color: var(--text); }
 .code-card .btn-ghost { background: #f1f0fe; color: var(--text); }
 .code-card .btn-ghost.danger { background: #ffeef0; color: #b11a2b; }
 .code-card .btn-sm:hover { filter: brightness(0.98); transform: translateY(-1px); }
+
+/* Icon buttons (star/pin) */
+.icon-btn { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 6px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.icon-btn.active { background: #fff6cc; border-color: #ffe08a; color: #8a6a00; }
+.icon-row { display: flex; gap: 8px; align-items: center; }
+.icon-btn svg { width: 18px; height: 18px; }
 
 @media (max-width: 640px) {
   header { padding: 12px; }
@@ -184,6 +249,11 @@ mark { background: #efeefe; color: inherit; padding: 0 2px; border-radius: 4px; 
 
 @media (max-width: 400px) {
   .codes-container { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .codes-container { padding: 12px; grid-template-columns: 1fr; }
+  .toolbar-left { width: 100%; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar-right { width: 100%; }
+  .toolbar-right .btn-primary, .toolbar-right .btn-ghost { width: 100%; }
 }
 
 /* Generic Page Layout */
