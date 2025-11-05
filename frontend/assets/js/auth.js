@@ -46,7 +46,17 @@ document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
         const data = await res.json();
 
         if (res.ok) {
-            localStorage.setItem("token", data.token);
+            const remember = document.getElementById("rememberMe")?.checked;
+            // Persist token based on user preference
+            if (remember) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("session_persist", "persistent");
+                try { sessionStorage.removeItem("token"); } catch(_) {}
+            } else {
+                try { sessionStorage.setItem("token", data.token); } catch(_) {}
+                localStorage.removeItem("token");
+                localStorage.setItem("session_persist", "session");
+            }
             alert("تم تسجيل الدخول بنجاح!");
             window.location.href = "dashboard.html";
         } else {

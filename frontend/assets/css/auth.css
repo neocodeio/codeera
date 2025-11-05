@@ -51,6 +51,10 @@ body{
   padding: 24px;
 }
 
+.auth-header{ display:grid; place-items:center; gap:6px; text-align:center; margin-bottom: 10px; }
+.auth-header img{ height:42px; }
+.auth-subtitle{ color:#626b7a; margin:0 0 6px; font-size: 14px; }
+
 .auth-container h2 {
   margin: 0 0 18px;
   color: var(--text);

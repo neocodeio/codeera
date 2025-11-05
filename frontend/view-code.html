@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="icon" href="assets/img/icon-transperant.png">
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
 </head>
 <body>
     <main class="page">
@@ -16,13 +19,22 @@
                 <span class="detail-tag" id="codeTag"></span>
             </div>
             <p id="codeDescription"></p>
-            <pre class="detail-code"><code id="codeSnippet"></code></pre>
+            <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px; margin-bottom:8px;">
+                <button id="copyBtn" class="btn-ghost">نسخ الكود</button>
+            </div>
+            <pre class="detail-code line-numbers"><code id="codeSnippet" class="language-markup"></code></pre>
             <div class="actions">
                 <button type="button" class="btn-ghost" onclick="window.history.back()">رجوع</button>
             </div>
         </section>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
     <script src="assets/js/viewCode.js"></script>
 </body>
 </html>
